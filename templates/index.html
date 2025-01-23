@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Резюме - Windows XP Style</title>
     <link rel="stylesheet" href="https://unpkg.com/xp.css" />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../static/styles.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="loading-screen">
@@ -192,109 +193,135 @@
 
         // Функція для перетягування вікон
         function makeDraggable(element) {
-            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            element.querySelector('.title-bar').onmousedown = dragMouseDown;
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    const titleBar = element.querySelector('.title-bar');
+    titleBar.onmousedown = dragMouseDown;
 
-            function dragMouseDown(e) {
-                e.preventDefault();
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                document.onmouseup = closeDragElement;
-                document.onmousemove = elementDrag;
-                // Підняти вікно наверх
-                const windows = document.querySelectorAll('.window');
-                windows.forEach(w => w.style.zIndex = '1');
-                element.style.zIndex = '2';
-            }
+    function dragMouseDown(e) {
+        e.preventDefault();
+        // Store the initial mouse position relative to the window
+        const rect = element.getBoundingClientRect();
+        pos1 = e.clientX - rect.left;
+        pos2 = e.clientY - rect.top;
 
-            function elementDrag(e) {
-                e.preventDefault();
-                pos1 = pos3 - e.clientX;
-                pos2 = pos4 - e.clientY;
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                element.style.top = (element.offsetTop - pos2) + "px";
-                element.style.left = (element.offsetLeft - pos1) + "px";
-                element.style.transform = 'none';
-            }
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
 
-            function closeDragElement() {
-                document.onmouseup = null;
-                document.onmousemove = null;
-            }
-        }
+        // Bring window to front
+        const windows = document.querySelectorAll('.window');
+        windows.forEach(w => w.style.zIndex = '1');
+        element.style.zIndex = '2';
+    }
+
+    function elementDrag(e) {
+        e.preventDefault();
+        // Calculate new position based on initial mouse offset
+        element.style.left = `${e.clientX - pos1}px`;
+        element.style.top = `${e.clientY - pos2}px`;
+        element.style.transform = 'none';
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
 
         // Додавання іконок на робочий стіл
         const desktop = document.querySelector('.desktop');
         desktopItems.forEach((item, index) => {
-            const icon = document.createElement('div');
-            icon.className = 'desktop-icon';
-            icon.draggable = true;
-            icon.style.left = `${20 + (index % 3) * 100}px`;
-            icon.style.top = `${20 + Math.floor(index / 3) * 100}px`;
-            icon.innerHTML = `
-                <img src="${item.icon}" alt="${item.title}">
-                <div>${item.title}</div>
-            `;
+    const icon = document.createElement('div');
+    icon.className = 'desktop-icon';
+    icon.draggable = true;
 
-            icon.addEventListener('click', () => {
-                const window = createWindow(item.id, item.title, item.content);
-                showWindow(window, '50%', '50%');
+    // Special positioning for game icon
+    if (item.id === 'game') {
+        icon.style.right = '20px';
+        icon.style.bottom = '50px';
+        icon.style.left = 'auto';
+        icon.style.top = 'auto';
+    } else {
+        icon.style.left = `${20 + (index % 3) * 100}px`;
+        icon.style.top = `${20 + Math.floor(index / 3) * 100}px`;
+    }
 
-                if (item.id === 'game') {
-                    initGame();
-                }
+    icon.innerHTML = `
+        <img src="${item.icon}" alt="${item.title}">
+        <div>${item.title}</div>
+    `;
 
-                // Додаємо обробники для табів
-                const tabs = window.querySelectorAll('.tab');
-                if (tabs.length > 0) {
-                    tabs.forEach(tab => {
-                        tab.addEventListener('click', () => {
-                            const tabId = tab.dataset.tab;
-                            const tabContents = window.querySelectorAll('.tab-content');
+    let isDragging = false;
+    let startX, startY;
 
-                            tabs.forEach(t => t.classList.remove('active'));
-                            tabContents.forEach(c => c.classList.remove('active'));
+    icon.addEventListener('mousedown', (e) => {
+        isDragging = false;
+        startX = e.clientX - icon.offsetLeft;
+        startY = e.clientY - icon.offsetTop;
+        icon.style.opacity = '0.7';
+    });
 
-                            tab.classList.add('active');
-                            window.querySelector(`.tab-content[data-tab="${tabId}"]`).classList.add('active');
-                        });
-                    });
-                }
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+
+        const x = e.clientX - startX;
+        const y = e.clientY - startY;
+
+        const maxX = desktop.offsetWidth - icon.offsetWidth;
+        const maxY = desktop.offsetHeight - icon.offsetHeight;
+
+        icon.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
+        icon.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
+    });
+
+    icon.addEventListener('mousedown', () => {
+        isDragging = true;
+    });
+
+    icon.addEventListener('click', (e) => {
+        if (isDragging) {
+            isDragging = false;
+            return;
+        }
+
+        // Prevent multiple windows
+        const existingWindow = document.getElementById(item.id);
+        if (existingWindow) {
+            existingWindow.style.display = 'block';
+            return;
+        }
+
+        const window = createWindow(item.id, item.title, item.content);
+        showWindow(window, '50%', '50%');
+
+        if (item.id === 'game') {
+            initGame();
+        }
+
+        // Tab handling (as in original code)
+        const tabs = window.querySelectorAll('.tab');
+        if (tabs.length > 0) {
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.dataset.tab;
+                    const tabContents = window.querySelectorAll('.tab-content');
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    window.querySelector(`.tab-content[data-tab="${tabId}"]`).classList.add('active');
+                });
             });
+        }
+    });
 
-            // Додавання можливості переміщення іконок
-            let isDragging = false;
-            let startX, startY;
+    document.addEventListener('mouseup', () => {
+        icon.style.opacity = '1';
+        isDragging = false;
+    });
 
-            icon.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                startX = e.clientX - icon.offsetLeft;
-                startY = e.clientY - icon.offsetTop;
-                icon.style.opacity = '0.7';
-            });
-
-            document.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-
-                const x = e.clientX - startX;
-                const y = e.clientY - startY;
-
-                // Обмеження руху в межах робочого столу
-                const maxX = desktop.offsetWidth - icon.offsetWidth;
-                const maxY = desktop.offsetHeight - icon.offsetHeight;
-
-                icon.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
-                icon.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
-            });
-
-            document.addEventListener('mouseup', () => {
-                isDragging = false;
-                icon.style.opacity = '1';
-            });
-
-            desktop.appendChild(icon);
-        });
+    desktop.appendChild(icon);
+});
 
         // Функціонал меню контактів
         const contactButton = document.querySelector('.contact-button');
