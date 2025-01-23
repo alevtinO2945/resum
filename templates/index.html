@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Резюме - Windows XP Style</title>
+    <link rel="stylesheet" href="https://unpkg.com/xp.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+    <div class="loading-screen">
+        <h1>Windows XP</h1>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <div class="desktop">
+        <!-- Desktop icons will be added here via JavaScript -->
+    </div>
+
+    <div class="taskbar">
+        <button class="contact-button">
+            <img src="https://win98icons.alexmeub.com/icons/png/user-0.png" alt="Contacts" style="width: 20px; height: 20px; margin-right: 5px;">
+            Контакти
+        </button>
+        <div class="contact-menu">
+            <div class="contact-menu-item">
+                <img src="https://win98icons.alexmeub.com/icons/png/mail-0.png" alt="Email">
+                example@email.com
+            </div>
+            <div class="contact-menu-item">
+                <img src="https://win98icons.alexmeub.com/icons/png/phone-0.png" alt="Phone">
+                +380123456789
+            </div>
+            <div class="contact-menu-item">
+                <img src="https://win98icons.alexmeub.com/icons/png/linkedin.png" alt="LinkedIn">
+                LinkedIn Profile
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Дані для іконок та вікон
+        const desktopItems = [
+            {
+                id: 'skills',
+                title: 'Навички',
+                icon: 'https://win98icons.alexmeub.com/icons/png/notepad-0.png',
+                content: `
+                    <div class="tab-container">
+                        <div class="tab active" data-tab="hard">Хард скіли</div>
+                        <div class="tab" data-tab="soft">Софт скіли</div>
+                    </div>
+                    <div class="tab-content active" data-tab="hard">
+                        <ul>
+                            <li>JavaScript</li>
+                            <li>React</li>
+                            <li>Node.js</li>
+                            <li>Python</li>
+                            <li>SQL</li>
+                        </ul>
+                    </div>
+                    <div class="tab-content" data-tab="soft">
+                        <ul>
+                            <li>Командна робота</li>
+                            <li>Комунікація</li>
+                            <li>Тайм-менеджмент</li>
+                            <li>Презентаційні навички</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                id: 'projects',
+                title: 'Проекти',
+                icon: 'https://win98icons.alexmeub.com/icons/png/directory_closed-4.png',
+                content: `
+                    <div class="project">
+                        <h3>Проект 1</h3>
+                        <p>Опис проекту 1</p>
+                    </div>
+                    <div class="project">
+                        <h3>Проект 2</h3>
+                        <p>Опис проекту 2</p>
+                    </div>
+                `
+            },
+            {
+                id: 'education',
+                title: 'Освіта',
+                icon: 'https://win98icons.alexmeub.com/icons/png/book_address-0.png',
+                content: `
+                    <h3>Університет</h3>
+                    <p>Назва університету</p>
+                    <p>Спеціальність</p>
+                    <p>Роки навчання</p>
+                `
+            },
+            {
+                id: 'activities',
+                title: 'Активності',
+                icon: 'https://win98icons.alexmeub.com/icons/png/trophy-0.png',
+                content: `
+                    <h3>Хакатони</h3>
+                    <p>Назва хакатону - опис досягнень</p>
+                    <h3>Сертифікати</h3>
+                    <p>Назва сертифікату - дата отримання</p>
+                    <h3>Волонтерство</h3>
+                    <p>Опис волонтерської діяльності</p>
+                `
+            },
+            {
+                id: 'languages',
+                title: 'Мови',
+                icon: 'https://win98icons.alexmeub.com/icons/png/world-0.png',
+                content: `
+                    <ul class="language-list">
+                        <li class="language-item">Українська - рідна</li>
+                        <li class="language-item">Англійська - B2</li>
+                        <li class="language-item">Німецька - A2</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'game',
+                title: 'Міні-гра',
+                icon: 'https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-0.png',
+                content: `
+                    <div class="game-container">
+                        <canvas id="gameCanvas" class="game-canvas" width="400" height="300"></canvas>
+                        <div class="game-score">Рахунок: 0</div>
+                    </div>
+                `
+            }
+        ];
+
+        // Завантажувальний екран
+        window.onload = function() {
+            const progress = document.querySelector('.progress');
+            progress.style.width = '100%';
+
+            setTimeout(() => {
+                document.querySelector('.loading-screen').style.display = 'none';
+                showWelcomeMessage();
+            }, 3000);
+        };
+
+        // Показ вікна привітання
+        function showWelcomeMessage() {
+            const window = createWindow('welcome', 'Ласкаво просимо!', `
+                <div style="padding: 20px;">
+                    <h2>Вітаю на моєму сайті-резюме!</h2>
+                    <p>Натисніть на іконки для перегляду інформації.</p>
+                </div>
+            `);
+            showWindow(window, '50%', '50%');
+        }
+
+        // Створення вікна
+        function createWindow(id, title, content) {
+            let window = document.createElement('div');
+            window.className = 'window';
+            window.id = id;
+            window.innerHTML = `
+                <div class="title-bar">
+                    <div class="title-bar-text">${title}</div>
+                    <div class="title-bar-controls">
+                        <button aria-label="Minimize"></button>
+                        <button aria-label="Maximize"></button>
+                        <button aria-label="Close" onclick="this.closest('.window').style.display='none'"></button>
+                    </div>
+                </div>
+                <div class="window-body">${content}</div>
+            `;
+
+            // Додаємо можливість перетягування вікна
+            makeDraggable(window);
+
+            document.body.appendChild(window);
+            return window;
+        }
+
+        // Показ вікна
+        function showWindow(window, x, y) {
+            window.style.display = 'block';
+            window.style.left = x;
+            window.style.top = y;
+            if (x === '50%' && y === '50%') {
+                window.style.transform = 'translate(-50%, -50%)';
+            }
+        }
+
+        // Функція для перетягування вікон
+        function makeDraggable(element) {
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            element.querySelector('.title-bar').onmousedown = dragMouseDown;
+
+            function dragMouseDown(e) {
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+                // Підняти вікно наверх
+                const windows = document.querySelectorAll('.window');
+                windows.forEach(w => w.style.zIndex = '1');
+                element.style.zIndex = '2';
+            }
+
+            function elementDrag(e) {
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                element.style.top = (element.offsetTop - pos2) + "px";
+                element.style.left = (element.offsetLeft - pos1) + "px";
+                element.style.transform = 'none';
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        // Додавання іконок на робочий стіл
+        const desktop = document.querySelector('.desktop');
+        desktopItems.forEach((item, index) => {
+            const icon = document.createElement('div');
+            icon.className = 'desktop-icon';
+            icon.draggable = true;
+            icon.style.left = `${20 + (index % 3) * 100}px`;
+            icon.style.top = `${20 + Math.floor(index / 3) * 100}px`;
+            icon.innerHTML = `
+                <img src="${item.icon}" alt="${item.title}">
+                <div>${item.title}</div>
+            `;
+
+            icon.addEventListener('click', () => {
+                const window = createWindow(item.id, item.title, item.content);
+                showWindow(window, '50%', '50%');
+
+                if (item.id === 'game') {
+                    initGame();
+                }
+
+                // Додаємо обробники для табів
+                const tabs = window.querySelectorAll('.tab');
+                if (tabs.length > 0) {
+                    tabs.forEach(tab => {
+                        tab.addEventListener('click', () => {
+                            const tabId = tab.dataset.tab;
+                            const tabContents = window.querySelectorAll('.tab-content');
+
+                            tabs.forEach(t => t.classList.remove('active'));
+                            tabContents.forEach(c => c.classList.remove('active'));
+
+                            tab.classList.add('active');
+                            window.querySelector(`.tab-content[data-tab="${tabId}"]`).classList.add('active');
+                        });
+                    });
+                }
+            });
+
+            // Додавання можливості переміщення іконок
+            let isDragging = false;
+            let startX, startY;
+
+            icon.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX - icon.offsetLeft;
+                startY = e.clientY - icon.offsetTop;
+                icon.style.opacity = '0.7';
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+
+                const x = e.clientX - startX;
+                const y = e.clientY - startY;
+
+                // Обмеження руху в межах робочого столу
+                const maxX = desktop.offsetWidth - icon.offsetWidth;
+                const maxY = desktop.offsetHeight - icon.offsetHeight;
+
+                icon.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
+                icon.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                icon.style.opacity = '1';
+            });
+
+            desktop.appendChild(icon);
+        });
+
+        // Функціонал меню контактів
+        const contactButton = document.querySelector('.contact-button');
+        const contactMenu = document.querySelector('.contact-menu');
+
+        contactButton.addEventListener('click', () => {
+            contactMenu.style.display = contactMenu.style.display === 'none' ? 'block' : 'none';
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!contactButton.contains(e.target) && !contactMenu.contains(e.target)) {
+                contactMenu.style.display = 'none';
+            }
+        });
+
+        // Міні-гра
+        function initGame() {
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+            const scoreElement = document.querySelector('.game-score');
+            let score = 0;
+            let gameSpeed = 2;
+
+            const bin = {
+                x: canvas.width / 2 - 25,
+                y: canvas.height - 50,
+                width: 50,
+                height: 50,
+                speed: 5
+            };
+
+            const trash = {
+                x: Math.random() * (canvas.width - 20),
+                y: 0,
+                width: 20,
+                height: 20,
+                speed: gameSpeed
+            };
+
+            function drawBin() {
+                ctx.fillStyle = '#666';
+                ctx.fillRect(bin.x, bin.y, bin.width, bin.height);
+                // Додаємо деталі до відра
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(bin.x, bin.y, bin.width, bin.height);
+            }
+
+            function drawTrash() {
+                ctx.fillStyle = '#833';
+                ctx.beginPath();
+                ctx.arc(trash.x + trash.width/2, trash.y + trash.height/2, trash.width/2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            function updateScore() {
+                scoreElement.textContent = `Рахунок: ${score}`;
+            }
+
+            canvas.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                bin.x = Math.max(0, Math.min(x - bin.width/2, canvas.width - bin.width));
+            });
+
+            function gameLoop() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                trash.y += trash.speed;
+
+                // Перевірка зіткнення
+                if (trash.y + trash.height > bin.y &&
+                    trash.x + trash.width > bin.x &&
+                    trash.x < bin.x + bin.width) {
+                    score++;
+                    trash.speed += 0.2;
+                    updateScore();
+                    // Скидаємо позицію сміття
+                    trash.y = 0;
+                    trash.x = Math.random() * (canvas.width - trash.width);
+                }
+
+                // Якщо сміття впало
+                if (trash.y > canvas.height) {
+                    trash.y = 0;
+                    trash.x = Math.random() * (canvas.width - trash.width);
+                }
+
+                drawBin();
+                drawTrash();
+
+                // Перевірка чи вікно з грою все ще відкрите
+                const gameWindow = document.getElementById('game');
+                if (gameWindow && gameWindow.style.display !== 'none') {
+                    requestAnimationFrame(gameLoop);
+                }
+            }
+
+            gameLoop();
+        }
+
+        // Закриття контекстного меню при кліку поза ним
+        document.addEventListener('click', (e) => {
+            const startMenu = document.querySelector('.start-menu');
+            if (!e.target.closest('.start-button') && !e.target.closest('.start-menu')) {
+                startMenu.style.display = 'none';
+            }
+        });
+
+        // Обробка гарячих клавіш
+        document.addEventListener('keydown', (e) => {
+            // Alt + Tab для перемикання між вікнами
+            if (e.altKey && e.key === 'Tab') {
+                e.preventDefault();
+                const windows = Array.from(document.querySelectorAll('.window')).filter(w => w.style.display !== 'none');
+                if (windows.length > 1) {
+                    const activeWindow = document.querySelector('.window[style*="z-index: 2"]');
+                    const nextWindow = windows[(windows.indexOf(activeWindow) + 1) % windows.length];
+                    windows.forEach(w => w.style.zIndex = '1');
+                    nextWindow.style.zIndex = '2';
+                }
+            }
+        });
+
+        // Загальний обробник для закриття вікон та меню при кліку на робочий стіл
+        desktop.addEventListener('click', (e) => {
+            if (e.target === desktop) {
+                document.querySelector('.contact-menu').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
