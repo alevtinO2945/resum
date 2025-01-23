@@ -234,7 +234,7 @@
     icon.className = 'desktop-icon';
     icon.draggable = true;
 
-    // Special positioning for game icon
+    // Positioning logic remains the same as previous solution
     if (item.id === 'game') {
         icon.style.right = '20px';
         icon.style.bottom = '50px';
@@ -251,72 +251,69 @@
     `;
 
     let isDragging = false;
-    let startX, startY;
+    let isMouseDown = false;
+    let clickCount = 0;
+    let clickTimer = null;
 
     icon.addEventListener('mousedown', (e) => {
-        isDragging = false;
-        startX = e.clientX - icon.offsetLeft;
-        startY = e.clientY - icon.offsetTop;
-        icon.style.opacity = '0.7';
+        isMouseDown = true;
+        clickCount++;
+
+        // Reset click count if too much time has passed
+        if (clickTimer) clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => {
+            clickCount = 0;
+        }, 300);
     });
 
     document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
+        if (!isMouseDown) return;
 
-        const x = e.clientX - startX;
-        const y = e.clientY - startY;
+        // Start dragging after a small movement threshold
+        if (!isDragging) {
+            const dx = Math.abs(e.movementX);
+            const dy = Math.abs(e.movementY);
+            if (dx > 3 || dy > 3) {
+                isDragging = true;
+                clickCount = 0;
+            }
+        }
 
-        const maxX = desktop.offsetWidth - icon.offsetWidth;
-        const maxY = desktop.offsetHeight - icon.offsetHeight;
-
-        icon.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
-        icon.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
-    });
-
-    icon.addEventListener('mousedown', () => {
-        isDragging = true;
-    });
-
-    icon.addEventListener('click', (e) => {
         if (isDragging) {
-            isDragging = false;
-            return;
+            const x = e.clientX - icon.offsetWidth / 2;
+            const y = e.clientY - icon.offsetHeight / 2;
+
+            const maxX = desktop.offsetWidth - icon.offsetWidth;
+            const maxY = desktop.offsetHeight - icon.offsetHeight;
+
+            icon.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
+            icon.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
+        }
+    });
+
+    icon.addEventListener('mouseup', (e) => {
+        if (!isDragging && clickCount === 2) {
+            // Open window on double-click
+            const existingWindow = document.getElementById(item.id);
+            if (existingWindow) {
+                existingWindow.style.display = 'block';
+            } else {
+                const window = createWindow(item.id, item.title, item.content);
+                showWindow(window, '50%', '50%');
+
+                if (item.id === 'game') {
+                    initGame();
+                }
+            }
         }
 
-        // Prevent multiple windows
-        const existingWindow = document.getElementById(item.id);
-        if (existingWindow) {
-            existingWindow.style.display = 'block';
-            return;
-        }
-
-        const window = createWindow(item.id, item.title, item.content);
-        showWindow(window, '50%', '50%');
-
-        if (item.id === 'game') {
-            initGame();
-        }
-
-        // Tab handling (as in original code)
-        const tabs = window.querySelectorAll('.tab');
-        if (tabs.length > 0) {
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const tabId = tab.dataset.tab;
-                    const tabContents = window.querySelectorAll('.tab-content');
-
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-
-                    tab.classList.add('active');
-                    window.querySelector(`.tab-content[data-tab="${tabId}"]`).classList.add('active');
-                });
-            });
-        }
+        // Reset states
+        isDragging = false;
+        isMouseDown = false;
     });
 
     document.addEventListener('mouseup', () => {
-        icon.style.opacity = '1';
+        isMouseDown = false;
         isDragging = false;
     });
 
