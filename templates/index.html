@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Резюме - Windows XP Style</title>
+    <title>Resume - Windows XP Style</title>
     <link rel="stylesheet" href="https://unpkg.com/xp.css" />
     <link rel="stylesheet" href="../static/styles.css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -21,16 +21,16 @@
 
     <div class="taskbar">
         <button class="contact-button">
-            <img src="https://win98icons.alexmeub.com/icons/png/user-0.png" alt="Contacts" style="width: 20px; height: 20px; margin-right: 5px;">
-            Контакти
+            <img src="https://www.clker.com/cliparts/G/Q/S/j/5/b/xp-user-icon-th.png" alt="Contacts" style="width: 20px; height: 20px; margin-right: 5px;">
+            Contacts
         </button>
         <div class="contact-menu">
             <div class="contact-menu-item">
-                <img src="https://win98icons.alexmeub.com/icons/png/mail-0.png" alt="Email">
+                <img src="https://icon-library.com/images/windows-xp-email-icon/windows-xp-email-icon-21.jpg" alt="Email">
                 example@email.com
             </div>
             <div class="contact-menu-item">
-                <img src="https://win98icons.alexmeub.com/icons/png/phone-0.png" alt="Phone">
+                <img src="https://www.pngitem.com/pimgs/m/100-1009225_telephone-icon-windows-xp-hd-png-download.png" alt="Phone">
                 +380123456789
             </div>
             <div class="contact-menu-item">
@@ -41,16 +41,16 @@
     </div>
 
     <script>
-        // Дані для іконок та вікон
+        // Data for icons and windows
         const desktopItems = [
             {
                 id: 'skills',
-                title: 'Навички',
-                icon: 'https://win98icons.alexmeub.com/icons/png/notepad-0.png',
+                title: 'Skills',
+                icon: 'https://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/Notepad-icon.png',
                 content: `
                     <div class="tab-container">
-                        <div class="tab active" data-tab="hard">Хард скіли</div>
-                        <div class="tab" data-tab="soft">Софт скіли</div>
+                        <div class="tab active" data-tab="hard">Hard Skills</div>
+                        <div class="tab" data-tab="soft">Soft Skills</div>
                     </div>
                     <div class="tab-content active" data-tab="hard">
                         <ul>
@@ -63,79 +63,79 @@
                     </div>
                     <div class="tab-content" data-tab="soft">
                         <ul>
-                            <li>Командна робота</li>
-                            <li>Комунікація</li>
-                            <li>Тайм-менеджмент</li>
-                            <li>Презентаційні навички</li>
+                            <li>Teamwork</li>
+                            <li>Communication</li>
+                            <li>Time Management</li>
+                            <li>Presentation Skills</li>
                         </ul>
                     </div>
                 `
             },
             {
                 id: 'projects',
-                title: 'Проекти',
-                icon: 'https://win98icons.alexmeub.com/icons/png/directory_closed-4.png',
+                title: 'Projects',
+                icon: 'https://icons.iconarchive.com/icons/tatice/cristal-intense/256/Folder-icon.png',
                 content: `
                     <div class="project">
-                        <h3>Проект 1</h3>
-                        <p>Опис проекту 1</p>
+                        <h3>Project 1</h3>
+                        <p>Description of project 1</p>
                     </div>
                     <div class="project">
-                        <h3>Проект 2</h3>
-                        <p>Опис проекту 2</p>
+                        <h3>Project 2</h3>
+                        <p>Description of project 2</p>
                     </div>
                 `
             },
             {
                 id: 'education',
-                title: 'Освіта',
-                icon: 'https://win98icons.alexmeub.com/icons/png/book_address-0.png',
+                title: 'Education',
+                icon: 'https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/256/Notebook-icon.png',
                 content: `
-                    <h3>Університет</h3>
-                    <p>Назва університету</p>
-                    <p>Спеціальність</p>
-                    <p>Роки навчання</p>
+                    <h3>University</h3>
+                    <p>University name</p>
+                    <p>Specialization</p>
+                    <p>Years of study</p>
                 `
             },
             {
                 id: 'activities',
-                title: 'Активності',
-                icon: 'https://win98icons.alexmeub.com/icons/png/trophy-0.png',
+                title: 'Activities',
+                icon: 'https://icons.iconarchive.com/icons/iconlicious/misc/256/trophy-icon.png',
                 content: `
-                    <h3>Хакатони</h3>
-                    <p>Назва хакатону - опис досягнень</p>
-                    <h3>Сертифікати</h3>
-                    <p>Назва сертифікату - дата отримання</p>
-                    <h3>Волонтерство</h3>
-                    <p>Опис волонтерської діяльності</p>
+                    <h3>Hackathons</h3>
+                    <p>Hackathon name - description of achievements</p>
+                    <h3>Certificates</h3>
+                    <p>Certificate name - date received</p>
+                    <h3>Volunteering</h3>
+                    <p>Description of volunteer activities</p>
                 `
             },
             {
                 id: 'languages',
-                title: 'Мови',
-                icon: 'https://win98icons.alexmeub.com/icons/png/world-0.png',
+                title: 'Languages',
+                icon: 'https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/256/Globe-icon.png',
                 content: `
                     <ul class="language-list">
-                        <li class="language-item">Українська - рідна</li>
-                        <li class="language-item">Англійська - B2</li>
-                        <li class="language-item">Німецька - A2</li>
+                        <li class="language-item">Ukrainian - native</li>
+                        <li class="language-item">English - B2</li>
+                        <li class="language-item">German - A2</li>
                     </ul>
                 `
             },
             {
                 id: 'game',
-                title: 'Міні-гра',
-                icon: 'https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-0.png',
+                title: 'Mini-game',
+                icon: 'https://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/Games-icon.png',
                 content: `
                     <div class="game-container">
                         <canvas id="gameCanvas" class="game-canvas" width="400" height="300"></canvas>
-                        <div class="game-score">Рахунок: 0</div>
+                        <div class="game-score">Score: 0</div>
                     </div>
                 `
             }
         ];
 
-        // Завантажувальний екран
+        // Loading screen
         window.onload = function() {
             const progress = document.querySelector('.progress');
             progress.style.width = '100%';
@@ -146,18 +146,18 @@
             }, 1500);
         };
 
-        // Показ вікна привітання
+        // Show welcome window
         function showWelcomeMessage() {
-            const window = createWindow('welcome', 'Ласкаво просимо!', `
+            const window = createWindow('welcome', 'Welcome!', `
                 <div style="padding: 20px;">
-                    <h2>Вітаю на моєму сайті-резюме!</h2>
-                    <p>Натисніть на іконки для перегляду інформації.</p>
+                    <h2>Welcome to my resume website!</h2>
+                    <p>Click on the icons to view information.</p>
                 </div>
             `);
             showWindow(window, '50%', '50%');
         }
 
-        // Створення вікна
+        // Create window
         function createWindow(id, title, content) {
             let window = document.createElement('div');
             window.className = 'window';
@@ -174,14 +174,14 @@
                 <div class="window-body">${content}</div>
             `;
 
-            // Додаємо можливість перетягування вікна
+            // Add window dragging functionality
             makeDraggable(window);
 
             document.body.appendChild(window);
             return window;
         }
 
-        // Показ вікна
+        // Show window
         function showWindow(window, x, y) {
             window.style.display = 'block';
             window.style.left = x;
@@ -191,136 +191,163 @@
             }
         }
 
-        // Функція для перетягування вікон
+        // Function for dragging windows
         function makeDraggable(element) {
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    const titleBar = element.querySelector('.title-bar');
-    titleBar.onmousedown = dragMouseDown;
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            const titleBar = element.querySelector('.title-bar');
+            titleBar.onmousedown = dragMouseDown;
 
-    function dragMouseDown(e) {
-        e.preventDefault();
-        // Store the initial mouse position relative to the window
-        const rect = element.getBoundingClientRect();
-        pos1 = e.clientX - rect.left;
-        pos2 = e.clientY - rect.top;
+            function dragMouseDown(e) {
+                e.preventDefault();
+                // Store the initial mouse position relative to the window
+                const rect = element.getBoundingClientRect();
+                pos1 = e.clientX - rect.left;
+                pos2 = e.clientY - rect.top;
 
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
 
-        // Bring window to front
-        const windows = document.querySelectorAll('.window');
-        windows.forEach(w => w.style.zIndex = '1');
-        element.style.zIndex = '2';
-    }
+                // Bring window to front
+                const windows = document.querySelectorAll('.window');
+                windows.forEach(w => w.style.zIndex = '1');
+                element.style.zIndex = '2';
+            }
 
-    function elementDrag(e) {
-        e.preventDefault();
-        // Calculate new position based on initial mouse offset
-        element.style.left = `${e.clientX - pos1}px`;
-        element.style.top = `${e.clientY - pos2}px`;
-        element.style.transform = 'none';
-    }
+            function elementDrag(e) {
+                e.preventDefault();
+                // Calculate new position based on initial mouse offset
+                element.style.left = `${e.clientX - pos1}px`;
+                element.style.top = `${e.clientY - pos2}px`;
+                element.style.transform = 'none';
+            }
 
-    function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-}
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
 
-        // Додавання іконок на робочий стіл
+        // Add icons to desktop
         const desktop = document.querySelector('.desktop');
         desktopItems.forEach((item, index) => {
-    const icon = document.createElement('div');
-    icon.className = 'desktop-icon';
-    icon.draggable = true;
+            const icon = document.createElement('div');
+            icon.className = 'desktop-icon';
+            icon.draggable = true;
 
-    // Positioning logic remains the same as previous solution
-    if (item.id === 'game') {
-        icon.style.right = '20px';
-        icon.style.bottom = '50px';
-        icon.style.left = 'auto';
-        icon.style.top = 'auto';
-    } else {
-        icon.style.left = `${20 + (index % 3) * 100}px`;
-        icon.style.top = `${20 + Math.floor(index / 3) * 100}px`;
-    }
-
-    icon.innerHTML = `
-        <img src="${item.icon}" alt="${item.title}">
-        <div>${item.title}</div>
-    `;
-
-    let isDragging = false;
-    let isMouseDown = false;
-    let clickCount = 0;
-    let clickTimer = null;
-
-    icon.addEventListener('mousedown', (e) => {
-        isMouseDown = true;
-        clickCount++;
-
-        // Reset click count if too much time has passed
-        if (clickTimer) clearTimeout(clickTimer);
-        clickTimer = setTimeout(() => {
-            clickCount = 0;
-        }, 300);
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (!isMouseDown) return;
-
-        // Start dragging after a small movement threshold
-        if (!isDragging) {
-            const dx = Math.abs(e.movementX);
-            const dy = Math.abs(e.movementY);
-            if (dx > 3 || dy > 3) {
-                isDragging = true;
-                clickCount = 0;
-            }
-        }
-
-        if (isDragging) {
-            const x = e.clientX - icon.offsetWidth / 2;
-            const y = e.clientY - icon.offsetHeight / 2;
-
-            const maxX = desktop.offsetWidth - icon.offsetWidth;
-            const maxY = desktop.offsetHeight - icon.offsetHeight;
-
-            icon.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
-            icon.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
-        }
-    });
-
-    icon.addEventListener('mouseup', (e) => {
-        if (!isDragging && clickCount === 2) {
-            // Open window on double-click
-            const existingWindow = document.getElementById(item.id);
-            if (existingWindow) {
-                existingWindow.style.display = 'block';
+            // Positioning logic remains the same as previous solution
+            if (item.id === 'game') {
+                icon.style.right = '20px';
+                icon.style.bottom = '50px';
+                icon.style.left = 'auto';
+                icon.style.top = 'auto';
             } else {
-                const window = createWindow(item.id, item.title, item.content);
-                showWindow(window, '50%', '50%');
-
-                if (item.id === 'game') {
-                    initGame();
-                }
+                icon.style.left = `${20 + (index % 3) * 100}px`;
+                icon.style.top = `${20 + Math.floor(index / 3) * 100}px`;
             }
+
+            icon.innerHTML = `
+                <img src="${item.icon}" alt="${item.title}">
+                <div>${item.title}</div>
+            `;
+
+            let isDragging = false;
+            let isMouseDown = false;
+            let clickCount = 0;
+            let clickTimer = null;
+
+            icon.addEventListener('mousedown', (e) => {
+                isMouseDown = true;
+                clickCount++;
+
+                // Reset click count if too much time has passed
+                if (clickTimer) clearTimeout(clickTimer);
+                clickTimer = setTimeout(() => {
+                    clickCount = 0;
+                }, 300);
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isMouseDown) return;
+
+                // Start dragging after a small movement threshold
+                if (!isDragging) {
+                    const dx = Math.abs(e.movementX);
+                    const dy = Math.abs(e.movementY);
+                    if (dx > 3 || dy > 3) {
+                        isDragging = true;
+                        clickCount = 0;
+                    }
+                }
+
+                if (isDragging) {
+                    const x = e.clientX - icon.offsetWidth / 2;
+                    const y = e.clientY - icon.offsetHeight / 2;
+
+                    const maxX = desktop.offsetWidth - icon.offsetWidth;
+                    const maxY = desktop.offsetHeight - icon.offsetHeight;
+
+                    icon.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
+                    icon.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
+                }
+            });
+
+            icon.addEventListener('mouseup', (e) => {
+                if (!isDragging && clickCount === 2) {
+                    // Open window on double-click
+                    const existingWindow = document.getElementById(item.id);
+                    if (existingWindow) {
+                        existingWindow.style.display = 'block';
+                    } else {
+                        const window = createWindow(item.id, item.title, item.content);
+                        showWindow(window, '50%', '50%');
+
+                        if (item.id === 'game') {
+                            initGame();
+                        } else if (item.id === 'skills') {
+                            initSkillsTabs();
+                        }
+                    }
+                }
+
+                // Reset states
+                isDragging = false;
+                isMouseDown = false;
+            });
+
+            document.addEventListener('mouseup', () => {
+                isMouseDown = false;
+                isDragging = false;
+            });
+
+            desktop.appendChild(icon);
+        });
+
+        // Fix for skills tabs
+        function initSkillsTabs() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // Update active content
+                    tabContents.forEach(content => {
+                        if (content.getAttribute('data-tab') === tabId) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+                });
+            });
         }
 
-        // Reset states
-        isDragging = false;
-        isMouseDown = false;
-    });
-
-    document.addEventListener('mouseup', () => {
-        isMouseDown = false;
-        isDragging = false;
-    });
-
-    desktop.appendChild(icon);
-});
-
-        // Функціонал меню контактів
+        // Contact menu functionality
         const contactButton = document.querySelector('.contact-button');
         const contactMenu = document.querySelector('.contact-menu');
 
@@ -334,7 +361,7 @@
             }
         });
 
-        // Міні-гра
+        // Mini-game
         function initGame() {
             const canvas = document.getElementById('gameCanvas');
             const ctx = canvas.getContext('2d');
@@ -361,7 +388,7 @@
             function drawBin() {
                 ctx.fillStyle = '#666';
                 ctx.fillRect(bin.x, bin.y, bin.width, bin.height);
-                // Додаємо деталі до відра
+                // Add details to the bin
                 ctx.strokeStyle = '#333';
                 ctx.lineWidth = 2;
                 ctx.strokeRect(bin.x, bin.y, bin.width, bin.height);
@@ -375,7 +402,12 @@
             }
 
             function updateScore() {
-                scoreElement.textContent = `Рахунок: ${score}`;
+                scoreElement.textContent = `Score: ${score}`;
+            }
+
+            function resetTrash() {
+                trash.y = 0;
+                trash.x = Math.random() * (canvas.width - trash.width);
             }
 
             canvas.addEventListener('mousemove', (e) => {
@@ -389,28 +421,31 @@
 
                 trash.y += trash.speed;
 
-                // Перевірка зіткнення
+                // Check for collision
                 if (trash.y + trash.height > bin.y &&
                     trash.x + trash.width > bin.x &&
-                    trash.x < bin.x + bin.width) {
+                    trash.x < bin.x + bin.width &&
+                    trash.y < bin.y + bin.height) {
                     score++;
                     trash.speed += 0.2;
                     updateScore();
-                    // Скидаємо позицію сміття
-                    trash.y = 0;
-                    trash.x = Math.random() * (canvas.width - trash.width);
+                    // Reset trash position
+                    resetTrash();
                 }
 
-                // Якщо сміття впало
+                // If trash has fallen past the bin
                 if (trash.y > canvas.height) {
-                    trash.y = 0;
-                    trash.x = Math.random() * (canvas.width - trash.width);
+                    // Reset score and speed when trash is missed
+                    score = 0;
+                    trash.speed = gameSpeed;
+                    updateScore();
+                    resetTrash();
                 }
 
                 drawBin();
                 drawTrash();
 
-                // Перевірка чи вікно з грою все ще відкрите
+                // Check if game window is still open
                 const gameWindow = document.getElementById('game');
                 if (gameWindow && gameWindow.style.display !== 'none') {
                     requestAnimationFrame(gameLoop);
@@ -420,17 +455,17 @@
             gameLoop();
         }
 
-        // Закриття контекстного меню при кліку поза ним
+        // Close context menu when clicking outside
         document.addEventListener('click', (e) => {
             const startMenu = document.querySelector('.start-menu');
-            if (!e.target.closest('.start-button') && !e.target.closest('.start-menu')) {
+            if (startMenu && !e.target.closest('.start-button') && !e.target.closest('.start-menu')) {
                 startMenu.style.display = 'none';
             }
         });
 
-        // Обробка гарячих клавіш
+        // Hotkey handling
         document.addEventListener('keydown', (e) => {
-            // Alt + Tab для перемикання між вікнами
+            // Alt + Tab to switch between windows
             if (e.altKey && e.key === 'Tab') {
                 e.preventDefault();
                 const windows = Array.from(document.querySelectorAll('.window')).filter(w => w.style.display !== 'none');
@@ -443,12 +478,186 @@
             }
         });
 
-        // Загальний обробник для закриття вікон та меню при кліку на робочий стіл
+        // General handler for closing windows and menus when clicking on desktop
         desktop.addEventListener('click', (e) => {
             if (e.target === desktop) {
-                document.querySelector('.contact-menu').style.display = 'none';
+                const contactMenu = document.querySelector('.contact-menu');
+                if (contactMenu) {
+                    contactMenu.style.display = 'none';
+                }
             }
         });
+
+        // Add some CSS to style the tabs
+        const style = document.createElement('style');
+        style.textContent = `
+            .tab-container {
+                display: flex;
+                border-bottom: 1px solid #999;
+                margin-bottom: 10px;
+            }
+            .tab {
+                padding: 5px 10px;
+                cursor: pointer;
+                background-color: #ececec;
+                border: 1px solid #999;
+                border-bottom: none;
+                margin-right: 2px;
+            }
+            .tab.active {
+                background-color: #fff;
+                position: relative;
+            }
+            .tab.active:after {
+                content: '';
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background-color: #fff;
+            }
+            .tab-content {
+                display: none;
+                padding: 10px;
+            }
+            .tab-content.active {
+                display: block;
+            }
+            .desktop {
+                background-image: url('https://wallpapercave.com/wp/S7YAp9d.jpg');
+                background-size: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 40px;
+                overflow: hidden;
+            }
+            .taskbar {
+                background: linear-gradient(to bottom, #245edb, #3a6edb, #245edb);
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                padding: 0 10px;
+            }
+            .loading-screen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #000;
+                color: #fff;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+            }
+            .progress-bar {
+                width: 300px;
+                height: 20px;
+                background-color: #333;
+                margin-top: 20px;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+            .progress {
+                width: 0;
+                height: 100%;
+                background-color: #0078d7;
+                transition: width 1.5s ease-in-out;
+            }
+            .desktop-icon {
+                position: absolute;
+                width: 80px;
+                height: 80px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                text-shadow: 1px 1px 1px black;
+                cursor: pointer;
+            }
+            .desktop-icon img {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 5px;
+            }
+            .desktop-icon div {
+                text-align: center;
+                font-size: 12px;
+                word-wrap: break-word;
+                width: 100%;
+            }
+            .contact-button {
+                display: flex;
+                align-items: center;
+                background: transparent;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding: 5px 10px;
+            }
+            .contact-button:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+            .contact-menu {
+                display: none;
+                position: absolute;
+                bottom: 40px;
+                left: 10px;
+                background: white;
+                border: 1px solid #ccc;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+            }
+            .contact-menu-item {
+                padding: 8px 12px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+            .contact-menu-item:hover {
+                background: #e5f3ff;
+            }
+            .contact-menu-item img {
+                width: 16px;
+                height: 16px;
+                margin-right: 8px;
+            }
+            .window {
+                position: absolute;
+                background: #ece9d8;
+                border: 1px solid #0078d7;
+                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+                min-width: 300px;
+                min-height: 200px;
+                display: none;
+                resize: both;
+                overflow: auto;
+            }
+            .game-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .game-canvas {
+                border: 1px solid #999;
+                margin-bottom: 10px;
+                background-color: #f0f0f0;
+            }
+            .game-score {
+                font-weight: bold;
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
