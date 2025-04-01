@@ -2,9 +2,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background-image: url('https://i.imgur.com/Zk6TR5k.jpg');
     background-size: cover;
-    cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEUAAAAAAAD///8AAADu7u7////As0GuAAAAA3RSTlMAf314/hiQAAAAAWJLR0QEj2jZUQAAAAd0SU1FB+EKHhYKBmRsK90AAABDSURBVCjPY2CAACYFBkYGKHBggAJlqDgDA1QYKU4Ewo0NDNAAKs7AwAAVZ0BXzwATZ4CpZ0BXz4CqnhDbGVDdxYACAID0Bf6yT4LRAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTEwLTMwVDIyOjEwOjA2LTA0OjAwdnKVyQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0xMC0zMFQyMjoxMDowNi0wNDowMAcvLXUAAAAASUVORK5CYII='), auto;
 }
 
 .desktop {
@@ -96,6 +94,7 @@ body {
     display: none;
     resize: both;
     overflow: auto;
+    font-size: 15px;
 }
 
 .window-body {

@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Resume - Windows XP Style</title>
+    <title>My Resume</title>
     <link rel="stylesheet" href="https://unpkg.com/xp.css" />
-    <link rel="stylesheet" href="../static/styles.css" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="../static/css/styles.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="loading-screen">
-        <h1>Windows XP</h1>
+        <h1>Welcome!</h1>
         <div class="progress-bar">
             <div class="progress"></div>
         </div>
@@ -21,21 +21,22 @@
 
     <div class="taskbar">
         <button class="contact-button">
-            <img src="https://www.clker.com/cliparts/G/Q/S/j/5/b/xp-user-icon-th.png" alt="Contacts" style="width: 20px; height: 20px; margin-right: 5px;">
+            <img src="{{ url_for('static', filename='images/user-accounts.png') }}" alt="Contacts" style="width: 20px; height: 20px; margin-right: 5px;">
             Contacts
         </button>
         <div class="contact-menu">
             <div class="contact-menu-item">
-                <img src="https://icon-library.com/images/windows-xp-email-icon/windows-xp-email-icon-21.jpg" alt="Email">
-                example@email.com
+                E-mail: rakapaka2005@gmail.com
             </div>
             <div class="contact-menu-item">
-                <img src="https://www.pngitem.com/pimgs/m/100-1009225_telephone-icon-windows-xp-hd-png-download.png" alt="Phone">
-                +380123456789
+                Phone number: +380954184822
             </div>
             <div class="contact-menu-item">
-                <img src="https://win98icons.alexmeub.com/icons/png/linkedin.png" alt="LinkedIn">
-                LinkedIn Profile
+                <a href="https://www.linkedin.com/in/alina-kushniruk/">LinkedIn</a>
+            </div>
+            <div class="contact-menu-item">
+                <a href="#">My resume in text format</a>
+
             </div>
         </div>
     </div>
@@ -46,7 +47,7 @@
             {
                 id: 'skills',
                 title: 'Skills',
-                icon: 'https://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/Notepad-icon.png',
+                icon: "{{ url_for('static', filename='images/administrative-tools.png') }}",
                 content: `
                     <div class="tab-container">
                         <div class="tab active" data-tab="hard">Hard Skills</div>
@@ -54,19 +55,29 @@
                     </div>
                     <div class="tab-content active" data-tab="hard">
                         <ul>
-                            <li>JavaScript</li>
-                            <li>React</li>
-                            <li>Node.js</li>
                             <li>Python</li>
-                            <li>SQL</li>
+                            <li>PyTorch</li>
+                            <li>OOP</li>
+                            <li>Java</li>
+                            <li>MySQL</li>
+                            <li>Git</li>
+                            <li>HTML5</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>TensorFlow</li>
+                            <li>Jupyter Notebook</li>
+                            <li>NumPy</li>
+                            <li>scikit-learn</li>
                         </ul>
                     </div>
                     <div class="tab-content" data-tab="soft">
                         <ul>
+                            <li>Stress tolerance</li>
                             <li>Teamwork</li>
-                            <li>Communication</li>
-                            <li>Time Management</li>
-                            <li>Presentation Skills</li>
+                            <li>Emotional intelligence</li>
+                            <li>Adaptability</li>
+                            <li>Responsiveness</li>
+                            <li>Modesty (of course, this is obvious)</li>
                         </ul>
                     </div>
                 `
@@ -74,58 +85,77 @@
             {
                 id: 'projects',
                 title: 'Projects',
-                icon: 'https://icons.iconarchive.com/icons/tatice/cristal-intense/256/Folder-icon.png',
+                icon: "{{ url_for('static', filename='images/briefcase.png') }}",
                 content: `
                     <div class="project">
-                        <h3>Project 1</h3>
-                        <p>Description of project 1</p>
-                    </div>
-                    <div class="project">
-                        <h3>Project 2</h3>
-                        <p>Description of project 2</p>
+                        <h3>Semantic Book Recommender System</h3>
+                        <p>Technology Stack: Python, OpenAI API, LangChain, Gradio, Pandas, Transformers</p>
+                        <p>A book recommendation system leveraging large language models. The system transforms book descriptions into mathematical representations to enable precise content-based matching. Key features include sentiment analysis, categorization of books, and a dashboard for recommendations.</p>
                     </div>
                 `
             },
             {
                 id: 'education',
                 title: 'Education',
-                icon: 'https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/256/Notebook-icon.png',
+                icon: "{{ url_for('static', filename='images/WMP-library.png') }}",
                 content: `
                     <h3>University</h3>
-                    <p>University name</p>
-                    <p>Specialization</p>
-                    <p>Years of study</p>
+                    <p>Vinnytsia National Technical University</p>
+                    <p>Specialization: Computer Science</p>
+                    <p>Education level: bachelor</p>
+                    <p>2023-2027</p>
+
+                    <h3>College</h3>
+                    <p>Mykolaiv Polytechnic Vocational College</p>
+                    <p>Computer engineering</p>
+                    <p>Education level: junior bachelor</p>
+                    <p>2021-2023</p>
                 `
             },
             {
                 id: 'activities',
                 title: 'Activities',
-                icon: 'https://icons.iconarchive.com/icons/iconlicious/misc/256/trophy-icon.png',
+                icon: "{{ url_for('static', filename='images/internet-shortcut.png') }}",
                 content: `
-                    <h3>Hackathons</h3>
-                    <p>Hackathon name - description of achievements</p>
-                    <h3>Certificates</h3>
-                    <p>Certificate name - date received</p>
-                    <h3>Volunteering</h3>
-                    <p>Description of volunteer activities</p>
+                    <h4>Student of the Vinnytsia Challenge Startup School of the Sikorsky Challenge Ukraine network 19/03/25 - now</h4>
+                    <p>I'm part of a team that develops its startup idea from scratch to result with the support of mentors</p>
+
+                    <h4>Volunteering at the HOUSE OF SOLIDARITY project 30/11/24 - 14/12/2024, France</h4>
+                    <p>My first volunteering experience abroad, where I had experience in construction, gardening and cooking for the House of Solidarity with participants from
+all over Europe.</p>
+
+                    <h4>Winner of Green Future Hackathon 2024</h4>
+                    <p>In two days, our team came up with a solution to optimize the provision of audit services, as well as energy efficiency services for private and public institutions.
+I parsed data on 5000 houses and built a machine learning model that gave house recommendations according to the house the user was viewing.</p>
+
+                    <h4>Participant of the summer eco-camp United by Ukraine 2024</h4>
+                    <p>At this eco-camp, I learned more about the European Green Deal and implemented a garden therapy event with the team in Stryiskyi Park in Lviv. During the day of all the events, more than 100 people were involved.</p>
+
+                    <h4>Participant of the youth project On board with EU in Kroczyce, Poland (october 2024)</h4>
+                    <p>The main objective of the project was intercultural exchange and knowledge about the European Union, deepening the connection with European values.</p>
+
+                    <h4>Winner of the All-Ukrainian Robotics Competition 2023</h4>
+                    <p>My teammate and I have developed a self-propelled device with a claw that can be used as a grabbing element. I wrote the code to control the device through a gamepad.</p>
                 `
             },
             {
                 id: 'languages',
                 title: 'Languages',
-                icon: 'https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/256/Globe-icon.png',
+                icon: "{{ url_for('static', filename='images/font-similarity-view.png') }}",
                 content: `
                     <ul class="language-list">
                         <li class="language-item">Ukrainian - native</li>
                         <li class="language-item">English - B2</li>
-                        <li class="language-item">German - A2</li>
+                        <li class="language-item">Russian - fluent</li>
+                        <li class="language-item">French — A2</li>
+                        <li class="language-item">Japanese — N4</li>
                     </ul>
                 `
             },
             {
                 id: 'game',
                 title: 'Mini-game',
-                icon: 'https://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/Games-icon.png',
+                icon: "{{ url_for('static', filename='images/recycle-bin-empty.png') }}",
                 content: `
                     <div class="game-container">
                         <canvas id="gameCanvas" class="game-canvas" width="400" height="300"></canvas>
@@ -148,10 +178,13 @@
 
         // Show welcome window
         function showWelcomeMessage() {
-            const window = createWindow('welcome', 'Welcome!', `
+            const window = createWindow('welcome', '👋👋👋', `
                 <div style="padding: 20px;">
-                    <h2>Welcome to my resume website!</h2>
-                    <p>Click on the icons to view information.</p>
+                    <h2>Hi!</h2>
+                    <p>This resume has the same information as the text version, but it has a little interactivity and is designed in my favorite aesthetic. </p>
+                    <p>You can find the text version of the resume in the “Contacts” menu.</p>
+                    <p>Here is a picture of the cats because everyone likes them.</p>
+                    <img width="100%" height="50%" src="{{ url_for('static', filename='images/cats.jpg') }}" alt="cats">
                 </div>
             `);
             showWindow(window, '50%', '50%');
@@ -525,7 +558,7 @@
                 display: block;
             }
             .desktop {
-                background-image: url('https://wallpapercave.com/wp/S7YAp9d.jpg');
+                background-image: url("{{ url_for('static', filename='images/azul.png') }}");
                 background-size: cover;
                 position: absolute;
                 top: 0;
@@ -545,34 +578,8 @@
                 align-items: center;
                 padding: 0 10px;
             }
-            .loading-screen {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: #000;
-                color: #fff;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999;
-            }
-            .progress-bar {
-                width: 300px;
-                height: 20px;
-                background-color: #333;
-                margin-top: 20px;
-                border-radius: 10px;
-                overflow: hidden;
-            }
-            .progress {
-                width: 0;
-                height: 100%;
-                background-color: #0078d7;
-                transition: width 1.5s ease-in-out;
-            }
+
+
             .desktop-icon {
                 position: absolute;
                 width: 80px;
@@ -592,7 +599,7 @@
             }
             .desktop-icon div {
                 text-align: center;
-                font-size: 12px;
+                font-size: 14px;
                 word-wrap: break-word;
                 width: 100%;
             }
@@ -659,5 +666,6 @@
         `;
         document.head.appendChild(style);
     </script>
+
 </body>
 </html>
