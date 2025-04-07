@@ -226,39 +226,49 @@ I parsed data on 5000 houses and built a machine learning model that gave house 
 
         // Function for dragging windows
         function makeDraggable(element) {
-            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            const titleBar = element.querySelector('.title-bar');
-            titleBar.onmousedown = dragMouseDown;
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    const titleBar = element.querySelector('.title-bar');
+    titleBar.onmousedown = dragMouseDown;
 
-            function dragMouseDown(e) {
-                e.preventDefault();
-                // Store the initial mouse position relative to the window
-                const rect = element.getBoundingClientRect();
-                pos1 = e.clientX - rect.left;
-                pos2 = e.clientY - rect.top;
+    function dragMouseDown(e) {
+        e.preventDefault();
 
-                document.onmouseup = closeDragElement;
-                document.onmousemove = elementDrag;
-
-                // Bring window to front
-                const windows = document.querySelectorAll('.window');
-                windows.forEach(w => w.style.zIndex = '1');
-                element.style.zIndex = '2';
-            }
-
-            function elementDrag(e) {
-                e.preventDefault();
-                // Calculate new position based on initial mouse offset
-                element.style.left = `${e.clientX - pos1}px`;
-                element.style.top = `${e.clientY - pos2}px`;
-                element.style.transform = 'none';
-            }
-
-            function closeDragElement() {
-                document.onmouseup = null;
-                document.onmousemove = null;
-            }
+        // Reset any transform property before getting position
+        if (element.style.transform) {
+            // Get current position before removing transform
+            const rect = element.getBoundingClientRect();
+            element.style.transform = 'none';
+            // Set explicit position based on current visual position
+            element.style.left = rect.left + 'px';
+            element.style.top = rect.top + 'px';
         }
+
+        // Now get the position after transform is removed
+        const rect = element.getBoundingClientRect();
+        pos1 = e.clientX - rect.left;
+        pos2 = e.clientY - rect.top;
+
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+
+        // Bring window to front
+        const windows = document.querySelectorAll('.window');
+        windows.forEach(w => w.style.zIndex = '1');
+        element.style.zIndex = '2';
+    }
+
+    function elementDrag(e) {
+        e.preventDefault();
+        // Calculate new position based on initial mouse offset
+        element.style.left = `${e.clientX - pos1}px`;
+        element.style.top = `${e.clientY - pos2}px`;
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
 
         // Add icons to desktop
         const desktop = document.querySelector('.desktop');
