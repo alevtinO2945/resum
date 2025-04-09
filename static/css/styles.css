@@ -95,6 +95,8 @@ body {
     resize: both;
     overflow: auto;
     font-size: 15px;
+    max-width: calc(100vw - 400px);
+    max-height: calc(100vh - 100px);
 }
 
 .window-body {
